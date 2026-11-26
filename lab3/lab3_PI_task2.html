@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<table border="1">
+<tr>
+<td colspan="5" align="right">
+<div id="disp">0</div>
+<hr>
+<div id="hist">&nbsp;</div>
+</td>
+</tr>
+<tr>
+<td><button onclick="add('7')">7</button></td>
+<td><button onclick="add('8')">8</button></td>
+<td><button onclick="add('9')">9</button></td>
+<td><button onclick="back()">→</button></td>
+<td><button onclick="clr()">C</button></td>
+</tr>
+<tr>
+<td><button onclick="add('4')">4</button></td>
+<td><button onclick="add('5')">5</button></td>
+<td><button onclick="add('6')">6</button></td>
+<td><button onclick="add('*')">×</button></td>
+<td><button onclick="add('/')">÷</button></td>
+</tr>
+<tr>
+<td><button onclick="add('1')">1</button></td>
+<td><button onclick="add('2')">2</button></td>
+<td><button onclick="add('3')">3</button></td>
+<td><button onclick="add('-')">-</button></td>
+<td rowspan="2"><button onclick="calc()">=</button></td>
+</tr>
+<tr>
+<td><button onclick="sign()">+/-</button></td>
+<td><button onclick="add('0')">0</button></td>
+<td><button onclick="add('.')">.</button></td>
+<td><button onclick="add('+')">+</button></td>
+</tr>
+</table>
+
+<script>
+let disp = document.getElementById("disp");
+let hist = document.getElementById("hist");
+
+function add(s) {
+if (disp.innerHTML == "0") disp.innerHTML = s;
+else disp.innerHTML += s;
+}
+
+function clr() {
+disp.innerHTML = "0";
+hist.innerHTML = "&nbsp;";
+}
+
+function back() {
+let t = disp.innerHTML;
+disp.innerHTML = (t.length > 1) ? t.slice(0, -1) : "0";
+}
+
+function sign() {
+let t = disp.innerHTML;
+if (t != "0") {
+disp.innerHTML = (t[0] == "-") ? t.slice(1) : "-" + t;
+}
+}
+
+function calc() {
+let expr = disp.innerHTML;
+let res = eval(expr);
+hist.innerHTML = expr + "=" + res;
+disp.innerHTML = res;
+}
+</script>
+</body>
+</html>

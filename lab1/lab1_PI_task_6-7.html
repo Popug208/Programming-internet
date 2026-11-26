@@ -1,0 +1,82 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<script language="JavaScript">
+let product = new Array(6);
+product = ["Яблуко", "Груша", "Банан", "Полуниця", "Вишня", "Лайм"];
+let quantity = ["50", "40", "35", "20", "60", "25"];
+let cost = ["35.5", "55", "65", "120", "80", "90"];
+let index = -1;
+
+function fun1() {
+index = -1;
+for (let i = 0; i < product.length; i++) {
+if (product[i] == form1.name_cont.value) {
+index = i;
+}
+}
+if (index != -1) {
+form1.output_quantity.value = quantity[index];
+form1.output_cost.value = cost[index];
+} else {
+form1.output_quantity.value = "Товар не знайдено";
+form1.output_cost.value = "Товар не знайдено";
+}
+}
+
+function fun2() {
+if (index != -1) {
+let total = parseFloat(quantity[index]) * parseFloat(cost[index]);
+document.getElementById("total6").innerHTML = "Загальна вартість товару " + product[index] + ": " + total;
+}
+}
+
+let index7 = -1;
+
+function fillSelect() {
+for (let i = 0; i < product.length; i++) {
+let option = document.createElement("option");
+option.text = product[i];
+option.value = i;
+form2.select_prod.add(option);
+}
+}
+
+function fun1_7() {
+index7 = parseInt(form2.select_prod.value);
+form2.output_quantity7.value = quantity[index7];
+form2.output_cost7.value = cost[index7];
+}
+
+function fun2_7() {
+if (index7 != -1) {
+let total = parseFloat(quantity[index7]) * parseFloat(cost[index7]);
+document.getElementById("total7").innerHTML = "Загальна вартість товару " + product[index7] + ": " + total;
+}
+}
+</script>
+</head>
+<body onLoad="fillSelect()">
+
+<h3>Завдання 6.</h3>
+<form name="form1">
+Введіть назву товару:<input type="text" name="name_cont">
+<input type="button" value="Наявна кількість і вартість" onClick="fun1()"><br>
+<input type="text" size="70" name="output_quantity"><br>
+<input type="text" size="70" name="output_cost"><br>
+<input type="button" value="Загальна сума" onClick="fun2()">
+<p id="total6"></p>
+</form>
+
+<h3>Завдання 7.</h3>
+<form name="form2">
+Оберіть товар:<select name="select_prod"></select>
+<input type="button" value="Наявна кількість і вартість" onClick="fun1_7()"><br>
+<input type="text" size="70" name="output_quantity7"><br>
+<input type="text" size="70" name="output_cost7"><br>
+<input type="button" value="Загальна сума" onClick="fun2_7()">
+<p id="total7"></p>
+</form>
+
+</body>
+</html>

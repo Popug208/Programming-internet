@@ -1,0 +1,51 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<script language="JavaScript">
+function addSymbol(sym) {
+calc_form.display.value += sym;
+}
+
+function clearDisplay() {
+calc_form.display.value = "";
+}
+
+function calculate() {
+calc_form.display.value = eval(calc_form.display.value);
+}
+</script>
+</head>
+<body>
+<form name="calc_form">
+<table>
+<tr>
+<td colspan="4"><input type="text" name="display" size="20"></td>
+</tr>
+<tr>
+<td><input type="button" value="7" onClick="addSymbol('7')"></td>
+<td><input type="button" value="8" onClick="addSymbol('8')"></td>
+<td><input type="button" value="9" onClick="addSymbol('9')"></td>
+<td><input type="button" value="/" onClick="addSymbol('/')"></td>
+</tr>
+<tr>
+<td><input type="button" value="4" onClick="addSymbol('4')"></td>
+<td><input type="button" value="5" onClick="addSymbol('5')"></td>
+<td><input type="button" value="6" onClick="addSymbol('6')"></td>
+<td><input type="button" value="*" onClick="addSymbol('*')"></td>
+</tr>
+<tr>
+<td><input type="button" value="1" onClick="addSymbol('1')"></td>
+<td><input type="button" value="2" onClick="addSymbol('2')"></td>
+<td><input type="button" value="3" onClick="addSymbol('3')"></td>
+<td><input type="button" value="-" onClick="addSymbol('-')"></td>
+</tr>
+<tr>
+<td><input type="button" value="C" onClick="clearDisplay()"></td>
+<td><input type="button" value="0" onClick="addSymbol('0')"></td>
+<td><input type="button" value="=" onClick="calculate()"></td>
+<td><input type="button" value="+" onClick="addSymbol('+')"></td>
+</tr>
+</table>
+</form>
+</body>
+</html>

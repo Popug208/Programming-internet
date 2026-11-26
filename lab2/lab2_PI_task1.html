@@ -1,0 +1,33 @@
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body onLoad="clock()">
+<form name="clock">
+Час і дата:
+<input type="text" name="datetime" size="25" value="">
+</form>
+<script language="JavaScript">
+let str;
+function clock() {
+let now = new Date();
+let hours = now.getHours();
+let minutes = now.getMinutes();
+let seconds = now.getSeconds();
+let year = now.getFullYear();
+let month = now.getMonth() + 1;
+let day = now.getDate();
+
+str = "" + hours;
+str += ((minutes < 10) ? "/0" : "/") + minutes;
+str += ((seconds < 10) ? "/0" : "/") + seconds;
+str += "+" + year;
+str += ((month < 10) ? "*0" : "*") + month;
+str += ((day < 10) ? "*0" : "*") + day;
+
+document.clock.datetime.value = str;
+setTimeout("clock()", 1000);
+}
+</script>
+</body>
+</html>

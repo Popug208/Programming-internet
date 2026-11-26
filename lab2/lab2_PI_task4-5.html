@@ -1,0 +1,41 @@
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<p id="demo_block">Елемент для дослідження DOM</p>
+<script language="JavaScript">
+console.group("Завдання 4");
+let x = 17, y = 5;
+console.log("Остача від ділення 17 на 5:", x % y);
+console.log("Остача дорівнює нулю:", (x % y) == 0);
+let arr = [10, 20, 30];
+console.log("Елементи масиву як числа: %d, %d, %d", arr[0], arr[1], arr[2]);
+console.log("Елементи як рядки та числа: %s, %d, %s", arr[0], arr[1], arr[2]);
+console.groupEnd();
+
+console.group("Завдання 5");
+console.info("%s numbers %d, %d and %d", "Info:", 1, 2, 3);
+console.warn("%s numbers %d, %d and %d", "Warn:", 1, 2, 3);
+console.error("%s numbers %d, %d and %d", "Error:", 1, 2, 3);
+console.dir(document.getElementById("demo_block"));
+console.dirxml(document.getElementById("demo_block"));
+
+console.time("Timer1");
+let temp = 0;
+for (let i = 0; i < 10000; i++) {
+temp += i;
+}
+console.timeEnd("Timer1");
+
+console.profile("Profile1");
+let testArr = [1, 2, 3, 4, 5];
+testArr.reverse();
+console.profileEnd("Profile1");
+
+let a = 1, b = "1";
+console.assert(a === b, "a не дорівнює b за типом");
+console.groupEnd();
+</script>
+</body>
+</html>

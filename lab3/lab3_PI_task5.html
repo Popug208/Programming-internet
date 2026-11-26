@@ -1,0 +1,36 @@
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<ul>
+<li>
+<a href="#" onclick="toggle(event)">fruits:</a>
+<ul>
+<li>apple</li>
+<li>pineapple;</li>
+<li>appricot;</li>
+<li>pear;</li>
+<li>lemon;</li>
+</ul>
+</li>
+<li>
+<a href="#" onclick="toggle(event)">vegetables:</a>
+<ul>
+<li>potatoes;</li>
+<li>beetroot;</li>
+<li>carrots;</li>
+<li>pear;</li>
+</ul>
+</li>
+</ul>
+
+<script>
+function toggle(e) {
+e.preventDefault();
+let list = e.target.nextElementSibling;
+list.style.display = (list.style.display == "none") ? "" : "none";
+}
+</script>
+</body>
+</html>

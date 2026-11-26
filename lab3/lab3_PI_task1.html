@@ -1,0 +1,36 @@
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<table>
+<tr>
+<td>Основа</td>
+<td><input type="text" id="a_inp" value="2"></td>
+</tr>
+<tr>
+<td>Висота</td>
+<td><input type="text" id="h_inp" value="3"></td>
+</tr>
+<tr>
+<td>Площа</td>
+<td id="res">3</td>
+</tr>
+</table>
+
+<script>
+let aInp = document.getElementById("a_inp");
+let hInp = document.getElementById("h_inp");
+let res = document.getElementById("res");
+
+function calc() {
+let a = parseFloat(aInp.value);
+let h = parseFloat(hInp.value);
+res.innerHTML = 0.5 * a * h;
+}
+
+aInp.addEventListener("input", calc);
+hInp.addEventListener("input", calc);
+</script>
+</body>
+</html>

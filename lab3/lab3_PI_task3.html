@@ -1,0 +1,104 @@
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<button id="mode_btn" onclick="switchMode()">Переключити на Інженерний</button>
+<table border="1">
+<tr>
+<td colspan="6" align="right">
+<div id="disp">0</div>
+<hr>
+<div id="hist">&nbsp;</div>
+</td>
+</tr>
+<tr>
+<td class="eng" style="display:none"><button onclick="fn('sqrt')">√</button></td>
+<td><button onclick="add('7')">7</button></td>
+<td><button onclick="add('8')">8</button></td>
+<td><button onclick="add('9')">9</button></td>
+<td><button onclick="back()">→</button></td>
+<td><button onclick="clr()">C</button></td>
+</tr>
+<tr>
+<td class="eng" style="display:none"><button onclick="fn('pow')">x²</button></td>
+<td><button onclick="add('4')">4</button></td>
+<td><button onclick="add('5')">5</button></td>
+<td><button onclick="add('6')">6</button></td>
+<td><button onclick="add('*')">×</button></td>
+<td><button onclick="add('/')">÷</button></td>
+</tr>
+<tr>
+<td class="eng" style="display:none"><button onclick="fn('sin')">sin</button></td>
+<td><button onclick="add('1')">1</button></td>
+<td><button onclick="add('2')">2</button></td>
+<td><button onclick="add('3')">3</button></td>
+<td><button onclick="add('-')">-</button></td>
+<td rowspan="2"><button onclick="calc()">=</button></td>
+</tr>
+<tr>
+<td class="eng" style="display:none"><button onclick="fn('cos')">cos</button></td>
+<td><button onclick="sign()">+/-</button></td>
+<td><button onclick="add('0')">0</button></td>
+<td><button onclick="add('.')">.</button></td>
+<td><button onclick="add('+')">+</button></td>
+</tr>
+</table>
+
+<script>
+let disp = document.getElementById("disp");
+let hist = document.getElementById("hist");
+let modeBtn = document.getElementById("mode_btn");
+let eng = false;
+
+function switchMode() {
+eng = !eng;
+let cells = document.querySelectorAll(".eng");
+cells.forEach(item => {
+item.style.display = eng ? "" : "none";
+});
+modeBtn.textContent = eng ? "Переключити на Простий" : "Переключити на Інженерний";
+}
+
+function add(s) {
+if (disp.innerHTML == "0") disp.innerHTML = s;
+else disp.innerHTML += s;
+}
+
+function clr() {
+disp.innerHTML = "0";
+hist.innerHTML = "&nbsp;";
+}
+
+function back() {
+let t = disp.innerHTML;
+disp.innerHTML = (t.length > 1) ? t.slice(0, -1) : "0";
+}
+
+function sign() {
+let t = disp.innerHTML;
+if (t != "0") {
+disp.innerHTML = (t[0] == "-") ? t.slice(1) : "-" + t;
+}
+}
+
+function fn(type) {
+let x = parseFloat(eval(disp.innerHTML));
+let r = 0;
+if (type == "sqrt") r = Math.sqrt(x);
+if (type == "pow") r = Math.pow(x, 2);
+if (type == "sin") r = Math.sin(x);
+if (type == "cos") r = Math.cos(x);
+hist.innerHTML = type + "(" + x + ")=" + r;
+disp.innerHTML = r;
+}
+
+function calc() {
+let expr = disp.innerHTML;
+let res = eval(expr);
+hist.innerHTML = expr + "=" + res;
+disp.innerHTML = res;
+}
+</script>
+</body>
+</html>

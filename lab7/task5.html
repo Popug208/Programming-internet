@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Завдання 5</title>
+</head>
+<body>
+  <h2>Завдання 5</h2>
+  <button type="button" onclick="runTask5()">Виконати</button>
+  <p id="out5"></p>
+
+  <script>
+    class MathHelper {
+      static add(a, b) {
+        return a + b;
+      }
+    }
+
+    function runTask5() {
+      document.getElementById("out5").textContent = MathHelper.add(5, 7);
+    }
+  </script>
+</body>
+</html>

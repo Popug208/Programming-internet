@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Лабораторна робота 6</title>
+</head>
+<body>
+  <h2>Завдання 1</h2>
+  <input type="text" id="t1Str" placeholder="Введіть рядок">
+  <button type="button" onclick="run1()">Виконати</button>
+  <p id="out1"></p>
+
+  <h2>Завдання 2</h2>
+  <input type="text" id="t2Str" placeholder="Введіть рядок">
+  <button type="button" onclick="run2()">Виконати</button>
+  <p id="out2"></p>
+
+  <h2>Завдання 3</h2>
+  <input type="text" id="t3Str" placeholder="Введіть рядок">
+  <input type="text" id="t3Ch" maxlength="1" placeholder="Символ">
+  <button type="button" onclick="run3()">Виконати</button>
+  <p id="out3"></p>
+
+  <h2>Завдання 4</h2>
+  <input type="text" id="t4Str" placeholder="Введіть рядок">
+  <input type="text" id="t4Ch" maxlength="1" placeholder="Символ">
+  <button type="button" onclick="run4()">Виконати</button>
+  <p id="out4"></p>
+
+  <h2>Завдання 5</h2>
+  <input type="text" id="t5Str" placeholder="Введіть рядок">
+  <button type="button" onclick="run5()">Виконати</button>
+  <p id="out5"></p>
+
+  <h2>Завдання 6</h2>
+  <input type="text" id="t6Str" placeholder="Введіть рядок">
+  <button type="button" onclick="run6()">Виконати</button>
+  <p id="out6"></p>
+
+  <h2>Завдання 7</h2>
+  <input type="text" id="t7Str" placeholder="Введіть рядок">
+  <input type="number" id="t7Len" placeholder="Макс. довжина">
+  <button type="button" onclick="run7()">Виконати</button>
+  <p id="out7"></p>
+
+  <h2>Завдання 8</h2>
+  <input type="text" id="t8Str" placeholder="Введіть рядок">
+  <button type="button" onclick="run8()">Виконати</button>
+  <p id="out8"></p>
+
+  <h2>Завдання 9</h2>
+  <input type="text" id="t9Str" placeholder="Введіть рядок">
+  <button type="button" onclick="run9()">Виконати</button>
+  <p id="out9"></p>
+
+  <h2>Завдання 10</h2>
+  <input type="text" id="t10Str" placeholder="Введіть рядок">
+  <input type="number" id="t10Len" placeholder="Довжина підрядка">
+  <button type="button" onclick="run10()">Виконати</button>
+  <p id="out10"></p>
+
+  <script>
+    function strLength(s) {
+      return s.length;
+    }
+
+    function strUpper(s) {
+      return s.toUpperCase();
+    }
+
+    function strLower(s) {
+      return s.toLowerCase();
+    }
+
+    function firstIndex(s, ch) {
+      return s.indexOf(ch);
+    }
+
+    function countChar(s, ch) {
+      let count = 0;
+      for (let i = 0; i < s.length; i++) {
+        if (s[i] === ch) {
+          count++;
+        }
+      }
+      return count;
+    }
+
+    function swapPairs(s) {
+      let res = "";
+      for (let i = 0; i < s.length; i += 2) {
+        if (i + 1 < s.length) {
+          res += s[i + 1] + s[i];
+        } else {
+          res += s[i];
+        }
+      }
+      return res;
+    }
+
+    function isSpam(s) {
+      let spamWords = ["100% безкоштовно", "збільшення продажів", "тільки сьогодні", "не видаляйте"];
+      for (let i = 0; i < spamWords.length; i++) {
+        if (s.includes(spamWords[i])) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    function truncate(s, maxLen) {
+      if (s.length > maxLen) {
+        if (maxLen <= 3) {
+          return "...".slice(0, maxLen);
+        }
+        return s.slice(0, maxLen - 3) + "...";
+      }
+      return s;
+    }
+
+    function reverseWords(s) {
+      return s.split(" ").reverse().join(" ");
+    }
+
+    function replaceSpaces(s) {
+      return s.replaceAll(" ", "_");
+    }
+
+    function subStringsByLen(s, len) {
+      let arr = [];
+      if (len <= 0) {
+        return arr;
+      }
+      for (let i = 0; i <= s.length - len; i++) {
+        arr.push(s.slice(i, i + len));
+      }
+      return arr;
+    }
+
+    function run1() {
+      let s = document.getElementById("t1Str").value;
+      document.getElementById("out1").textContent = strLength(s);
+    }
+
+    function run2() {
+      let s = document.getElementById("t2Str").value;
+      document.getElementById("out2").textContent = strUpper(s) + " | " + strLower(s);
+    }
+
+    function run3() {
+      let s = document.getElementById("t3Str").value;
+      let ch = document.getElementById("t3Ch").value;
+      document.getElementById("out3").textContent = firstIndex(s, ch);
+    }
+
+    function run4() {
+      let s = document.getElementById("t4Str").value;
+      let ch = document.getElementById("t4Ch").value;
+      document.getElementById("out4").textContent = countChar(s, ch);
+    }
+
+    function run5() {
+      let s = document.getElementById("t5Str").value;
+      document.getElementById("out5").textContent = swapPairs(s);
+    }
+
+    function run6() {
+      let s = document.getElementById("t6Str").value;
+      document.getElementById("out6").textContent = isSpam(s);
+    }
+
+    function run7() {
+      let s = document.getElementById("t7Str").value;
+      let len = Number(document.getElementById("t7Len").value);
+      document.getElementById("out7").textContent = truncate(s, len);
+    }
+
+    function run8() {
+      let s = document.getElementById("t8Str").value;
+      document.getElementById("out8").textContent = reverseWords(s);
+    }
+
+    function run9() {
+      let s = document.getElementById("t9Str").value;
+      document.getElementById("out9").textContent = replaceSpaces(s);
+    }
+
+    function run10() {
+      let s = document.getElementById("t10Str").value;
+      let len = Number(document.getElementById("t10Len").value);
+      document.getElementById("out10").textContent = JSON.stringify(subStringsByLen(s, len));
+    }
+  </script>
+</body>
+</html>

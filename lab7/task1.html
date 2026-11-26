@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Завдання 1</title>
+</head>
+<body>
+  <h2>Завдання 1</h2>
+  <button type="button" onclick="showTime()">Показати час</button>
+  <p id="outTime"></p>
+
+  <label for="addSec">Кількість секунд:</label>
+  <input type="text" id="addSec">
+  <button type="button" onclick="addSeconds()">Змінити час</button>
+  <p id="outSec"></p>
+
+  <script>
+    let timeObj = {
+      hours: 20,
+      minutes: 30,
+      seconds: 45,
+      format() {
+        let h = String(this.hours).padStart(2, "0");
+        let m = String(this.minutes).padStart(2, "0");
+        let s = String(this.seconds).padStart(2, "0");
+        return h + ":" + m + ":" + s;
+      },
+      addSeconds(sec) {
+        let total = this.hours * 3600 + this.minutes * 60 + this.seconds + Number(sec);
+        let daySec = 24 * 3600;
+        total = ((total % daySec) + daySec) % daySec;
+        this.hours = Math.floor(total / 3600);
+        this.minutes = Math.floor((total % 3600) / 60);
+        this.seconds = total % 60;
+      }
+    };
+
+    function showTime() {
+      document.getElementById("outTime").textContent = timeObj.format();
+    }
+
+    function addSeconds() {
+      let sec = Number(document.getElementById("addSec").value);
+      timeObj.addSeconds(sec);
+      document.getElementById("outSec").textContent = timeObj.format();
+    }
+  </script>
+</body>
+</html>

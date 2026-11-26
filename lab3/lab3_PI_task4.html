@@ -1,0 +1,34 @@
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<table>
+<tr>
+<td colspan="2"><img id="pic" src="papuga.1.jpg" width="250"></td>
+</tr>
+<tr>
+<td><button onclick="prev()">Назад</button></td>
+<td><button onclick="next()">Вперед</button></td>
+</tr>
+</table>
+
+<script>
+let a = ['papuga.1.jpg', 'papuga.2.jpg', 'papuga.3.jpg', 'papuga.4.jpg'];
+let i = 0;
+let pic = document.getElementById("pic");
+
+function next() {
+i++;
+if (i >= a.length) i = 0;
+pic.setAttribute("src", a[i]);
+}
+
+function prev() {
+i--;
+if (i < 0) i = a.length - 1;
+pic.setAttribute("src", a[i]);
+}
+</script>
+</body>
+</html>

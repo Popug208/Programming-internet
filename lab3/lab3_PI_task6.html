@@ -1,0 +1,41 @@
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<h1 id="title">Початковий заголовок</h1>
+<a href="http://google.com" id="my-link">Перейти до пошукової системи</a>
+<div id="box">Блок</div>
+<br>
+<button id="btn">Перейти в кінцевий стан</button>
+
+<script>
+let title = document.getElementById("title");
+let link = document.getElementById("my-link");
+let box = document.getElementById("box");
+let btn = document.getElementById("btn");
+let state = false;
+let timer;
+
+btn.addEventListener("click", () => {
+clearTimeout(timer);
+if (!state) {
+title.textContent = "Лабораторна робота виконана";
+link.setAttribute("href", "http://wikipedia.org");
+link.textContent = "Перейти до Вікіпедії";
+box.style.background = "green";
+timer = setTimeout(() => box.style.background = "blue", 4000);
+btn.textContent = "Перейти в початковий стан";
+state = true;
+} else {
+title.textContent = "Початковий заголовок";
+link.setAttribute("href", "http://google.com");
+link.textContent = "Перейти до пошукової системи";
+box.style.background = "";
+btn.textContent = "Перейти в кінцевий стан";
+state = false;
+}
+});
+</script>
+</body>
+</html>

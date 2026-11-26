@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Завдання 2</title>
+</head>
+<body>
+  <h2>Завдання 2</h2>
+  <p>Завдання 2.1.Виведення поточної дати, дня тижня і часу</p>
+  <button type="button" onclick="showDateInfo()">Виконати</button>
+  <p id="out2_1"></p>
+
+  <label for="yearInput">Рік:</label>
+  <input type="text" id="yearInput">
+  <label for="monthInput">Місяць:</label>
+  <input type="text" id="monthInput">
+  <button type="button" onclick="showLastDay()">Виконати</button>
+  <p id="out2_2"></p>
+
+  <button type="button" onclick="showDaySeconds()">Виконати</button>
+  <p id="out2_3"></p>
+
+  <script>
+    function showDateInfo() {
+      let now = new Date();
+      let months = [
+        "січня", "лютого", "березня", "квітня", "травня", "червня",
+        "липня", "серпня", "вересня", "жовтня", "листопада", "грудня"
+      ];
+      let days = [
+        "неділя", "понеділок", "вівторок", "середа", "четвер", "п'ятниця", "субота"
+      ];
+      let dateStr = "Дата: " + now.getDate() + " " + months[now.getMonth()] + " " + now.getFullYear() + " року";
+      let dayStr = "День тижня: " + days[now.getDay()];
+      let timeStr = "Час: " + String(now.getHours()).padStart(2, "0") + ":" + String(now.getMinutes()).padStart(2, "0");
+      document.getElementById("out2_1").innerHTML = dateStr + "<br>" + dayStr + "<br>" + timeStr;
+    }
+
+    function getLastDayOfMonth(year, month) {
+      return new Date(year, month, 0).getDate();
+    }
+
+    function showLastDay() {
+      let y = Number(document.getElementById("yearInput").value);
+      let m = Number(document.getElementById("monthInput").value);
+      document.getElementById("out2_2").textContent = getLastDayOfMonth(y, m);
+    }
+
+    function getDaySeconds() {
+      let now = new Date();
+      let passed = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+      let totalDay = 24 * 3600;
+      let remaining = totalDay - passed;
+      return {
+        passedSeconds: passed,
+        remainingSeconds: remaining
+      };
+    }
+
+    function showDaySeconds() {
+      let res = getDaySeconds();
+      document.getElementById("out2_3").innerHTML =
+        "Пройшло секунд від початку дня: " + res.passedSeconds +
+        "<br>Секунд до початку наступного дня: " + res.remainingSeconds;
+    }
+  </script>
+</body>
+</html>

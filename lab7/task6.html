@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Завдання 6 варіант 1</title>
+</head>
+<body>
+  <h2>Завдання 6 варіант 1</h2>
+
+  <label for="bookTitle">Назва книги:</label>
+  <input type="text" id="bookTitle"><br><br>
+
+  <label for="bookAuthor">Автор:</label>
+  <input type="text" id="bookAuthor"><br><br>
+
+  <label for="bookYear">Рік видання:</label>
+  <input type="text" id="bookYear"><br><br>
+
+  <label for="ebookSize">Розмір файлу:</label>
+  <input type="text" id="ebookSize"><br><br>
+
+  <button type="button" onclick="showBookInfo()">Показати інформацію</button>
+  <button type="button" onclick="clearBookFields()">Очистити поля</button>
+  <p id="out6"></p>
+
+  <script>
+    class Book {
+      static category = "Книга";
+
+      constructor(title, author, year) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+      }
+
+      getInfo() {
+        return `${Book.category}: ${this.title}, ${this.author}, ${this.year}`;
+      }
+    }
+
+    class Ebook extends Book {
+      constructor(title, author, year, fileSize) {
+        super(title, author, year);
+        this.fileSize = fileSize;
+      }
+
+      download() {
+        return `Завантаження ${this.title} (${this.fileSize})`;
+      }
+    }
+
+    function showBookInfo() {
+      let title = document.getElementById("bookTitle").value;
+      let author = document.getElementById("bookAuthor").value;
+      let year = document.getElementById("bookYear").value;
+      let fileSize = document.getElementById("ebookSize").value;
+
+      let book = new Book(title, author, year);
+      let ebook = new Ebook(title, author, year, fileSize);
+
+      document.getElementById("out6").innerHTML = book.getInfo() + "<br>" + ebook.download();
+    }
+
+    function clearBookFields() {
+      document.getElementById("bookTitle").value = "";
+      document.getElementById("bookAuthor").value = "";
+      document.getElementById("bookYear").value = "";
+      document.getElementById("ebookSize").value = "";
+      document.getElementById("out6").textContent = "";
+    }
+  </script>
+</body>
+</html>

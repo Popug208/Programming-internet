@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Завдання 2</title>
+</head>
+<body>
+  <form>
+    <p>
+      <label for="email">E-mail:</label>
+      <input type="text" id="email">
+      <span id="emailMsg"></span>
+    </p>
+    <p>
+      <label for="fio">Ім’я та прізвище:</label>
+      <input type="text" id="fio">
+      <span id="fioMsg"></span>
+    </p>
+    <p>
+      <label for="login">Логін:</label>
+      <input type="text" id="login">
+      <span id="loginMsg"></span>
+    </p>
+    <p>
+      <label for="pass">Пароль:</label>
+      <input type="text" id="pass">
+      <span id="passMsg"></span>
+    </p>
+    <p>
+      <label for="zip">Поштовий індекс:</label>
+      <input type="text" id="zip">
+      <span id="zipMsg"></span>
+    </p>
+    <button type="button" onclick="checkForm()">Перевірити</button>
+  </form>
+
+  <script>
+    function ok(input, msg) {
+      input.style.borderColor = "green";
+      input.style.color = "";
+      msg.style.color = "green";
+      msg.textContent = "✔";
+    }
+
+    function err(input, msg, text) {
+      input.style.borderColor = "red";
+      input.style.color = "red";
+      msg.style.color = "red";
+      msg.textContent = text;
+    }
+
+    function checkForm() {
+      let email = document.getElementById("email");
+      let fio = document.getElementById("fio");
+      let login = document.getElementById("login");
+      let pass = document.getElementById("pass");
+      let zip = document.getElementById("zip");
+
+      let rEmail = /^[^\s@]+@cnu\.edu\.ua$/;
+      let rFio = /^[A-ZА-ЯЁЇІЄҐ][a-zа-яёїієґ]+ [A-ZА-ЯЁЇІЄҐ]+$/;
+      let rLogin = /^[A-Za-z]+$/;
+      let rZip = /^\d{5}$/;
+
+      let p = pass.value;
+      let passOk = p.length >= 8 && /[A-Za-zА-Яа-яЁёЇїІіЄєҐґ]/.test(p) && /\d/.test(p) && /[_!@#$%^&*-]/.test(p);
+
+      if (rEmail.test(email.value)) {
+        ok(email, document.getElementById("emailMsg"));
+      } else {
+        err(email, document.getElementById("emailMsg"), "Вимога: @cnu.edu.ua");
+      }
+
+      if (rFio.test(fio.value)) {
+        ok(fio, document.getElementById("fioMsg"));
+      } else {
+        err(fio, document.getElementById("fioMsg"), "Вимога: Ім'я ПРІЗВИЩЕ (лише літери, кирилиця або латина)");
+      }
+
+      if (rLogin.test(login.value)) {
+        ok(login, document.getElementById("loginMsg"));
+      } else {
+        err(login, document.getElementById("loginMsg"), "Вимога: лише латина");
+      }
+
+      if (passOk) {
+        ok(pass, document.getElementById("passMsg"));
+      } else {
+        err(pass, document.getElementById("passMsg"), "Вимога: мін. 8 символів, по 1 літері, цифрі і спецсимволу _-!@#$%^&*");
+      }
+
+      if (rZip.test(zip.value)) {
+        ok(zip, document.getElementById("zipMsg"));
+      } else {
+        err(zip, document.getElementById("zipMsg"), "Вимога: 5 цифр");
+      }
+    }
+  </script>
+</body>
+</html>

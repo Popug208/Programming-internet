@@ -1,0 +1,31 @@
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<script language="JavaScript">
+console.group("Завдання 6");
+let names = ["Alex", "John", "Elena", "Mike", "Ivan", "Olga", "Bob", "Uma"];
+for (let i = 0; i < names.length; i++) {
+let firstLetter = names[i][0];
+if (firstLetter == "A" || firstLetter == "E" || firstLetter == "I" || firstLetter == "O" || firstLetter == "U" || firstLetter == "Y") {
+console.log("Goodbye " + names[i]);
+} else {
+console.log("Hello " + names[i]);
+}
+}
+console.groupEnd();
+
+console.group("Завдання 7");
+console.log("Анотація: Селекціонування імен за довжиною імені (якщо кількість літер <= 4 — виводимо Short name, інакше — Long name).");
+for (let i = 0; i < names.length; i++) {
+if (names[i].length <= 4) {
+console.log("Short name: " + names[i]);
+} else {
+console.log("Long name: " + names[i]);
+}
+}
+console.groupEnd();
+</script>
+</body>
+</html>
